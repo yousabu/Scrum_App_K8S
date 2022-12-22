@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scrum-ui
+  labels:
+    app: scrum-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scrum-ui
+  template:
+    metadata:
+      labels:
+        app: scrum-ui
+    spec:
+      containers:
+      - name: scrum-ui
+        image: registry.gitlab.com/spring_boot2/scrum_ui:0.0.0.3
+        ports:
+        - containerPort: 80

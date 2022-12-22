@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scrum-back
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+        app: scrum-back
+  template:
+      metadata:
+        labels:
+          app: scrum-back
+      spec:
+        containers:
+        - name: scrum-back
+          image: registry.gitlab.com/spring_boot2/scrum_backend:1.0.1
+          ports:
+          - containerPort: 8080
+          env:
+            - name: DB_SERVER
+              value: postgres-service
+            - name: POSTGRES_DB
+              value: scrum
+            - name: POSTGRES_USER
+              value: scrum
+            - name: POSTGRES_PASSWORD
+              value: scrum
